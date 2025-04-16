@@ -1,0 +1,116 @@
+Credit Risk Assessment in KNIME
+
+🚀 Project: Credit Risk Assessment in KNIME
+🎯 Objective:
+Predict if a loan applicant is a good or bad credit risk based on historical data, with an emphasis on model interpretability using SHAP.
+
+🛠️ Step-by-Step Workflow
+📌 1. Data Ingestion
+Node(s):
+
+File Reader or Excel Reader
+
+Description:
+
+Load your dataset (e.g., German Credit Data).
+
+📌 2. Data Preprocessing
+Node(s):
+
+Missing Value
+
+One to Many (for categorical → numerical)
+
+Column Filter (drop unnecessary columns)
+
+Normalizer or Z-Score Normalization
+
+Description:
+
+Handle missing values
+
+Encode categorical variables
+
+Normalize numerical features
+
+📌 3. Feature Engineering
+Node(s):
+
+Math Formula, String Manipulation, Rule Engine
+
+Description:
+
+Create new features (e.g., loan_to_income_ratio)
+
+Derive credit behavior patterns
+
+📌 4. Data Balancing (SMOTE)
+Node:
+
+SMOTE (Synthetic Minority Over-sampling Technique)
+
+Description:
+
+Handle class imbalance (if ‘Bad Credit’ is underrepresented)
+
+📌 5. Data Partitioning
+Node:
+
+Partitioning
+
+Split:
+
+Train: 70%
+
+Test: 30%
+
+📌 6. Model Building (Ensembling + AutoML)
+Option A – Manual Models:
+
+XGBoost Tree Ensemble Learner
+
+Random Forest Learner
+
+Gradient Boosted Trees Learner
+
+Option B – AutoML Component:
+
+KNIME AutoML Component (Classification) from KNIME Hub
+
+🔁 Wrap learners inside a Voting Ensemble node for better performance.
+
+📌 7. Model Evaluation
+Nodes:
+
+XGBoost Predictor or Ensemble Predictor
+
+Scorer, ROC Curve, Lift Chart
+
+Metrics:
+
+Accuracy, Precision, Recall, F1-score
+
+AUC-ROC
+
+📌 8. Model Interpretability
+Node(s):
+
+SHAP for XGBoost
+
+SHAP Summarizer, SHAP Table Viewer, SHAP Beeswarm Plot
+
+Description:
+
+See which features most influence decisions (e.g., loan amount, age, duration)
+
+It is almost impossible to understand the original dataset due to its complicated system of categories and symbols. Thus, I wrote a small Python script to convert it into a readable CSV file. Several columns are simply ignored, because in my opinion either they are not important or their descriptions are obscure. The selected attributes are:
+
+Age (numeric)
+Sex (text: male, female)
+Job (numeric: 0 - unskilled and non-resident, 1 - unskilled and resident, 2 - skilled, 3 - highly skilled)
+Housing (text: own, rent, or free)
+Saving accounts (text - little, moderate, quite rich, rich)
+Checking account (numeric, in DM - Deutsch Mark)
+Credit amount (numeric, in DM)
+Duration (numeric, in month)
+Purpose (text: car, furniture/equipment, radio/TV, domestic appliances, repairs, education, business, vacation/others)
